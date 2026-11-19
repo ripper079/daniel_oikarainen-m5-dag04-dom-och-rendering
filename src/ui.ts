@@ -50,20 +50,40 @@ export function visaMeny(container: HTMLElement, ratter: Ratt[]): void {
   }
   //Lägg till tom p
   else {
-    const emptyText = document.createElement("p");
-    emptyText.textContent = "Inga rätter hittades.";
-    emptyText.classList.add("tom");
-    container.append(emptyText);
+    const emptyTextPlaceholder = document.createElement("p");
+    emptyTextPlaceholder.textContent = "Inga rätter hittades.";
+    emptyTextPlaceholder.classList.add("tom");
+    container.append(emptyTextPlaceholder);
   }
 }
 
 // 3. Sätt rubrikens text: "Meny (8 rätter)". Ett enda: "Meny (1 rätt)".
 export function uppdateraRubrik(element: HTMLElement, antal: number): void {
   // TODO
+  const menyText = antal > 1 ? `Meny (${antal} rätter)` : `Meny (${antal} rätt)`;
+  element.textContent = menyText;  
 }
 
 // 4. Markera EN rätt som dagens rätt: klassen "dagens" ska finnas på kortet med rätt
 //    data-id, och inte på något annat kort. Anropas igen = markeringen flyttas.
 export function markeraDagensRatt(container: HTMLElement, id: number): void {
   // TODO
+  //Alt 1 - Denna nukar bort all dagens (ifall ngn klantat sig)
+  //Få alla element med classen dagens på
+  //let allChildrenDagens = container.querySelectorAll(".dagens");
+  //Nollställ alla eventuell childrens dagens
+  //for (const oneChild of allChildrenDagens){
+  //  oneChild.classList.remove("dagens");
+  //}
+
+  //Alt 2 - Denna antar att enbart en har dagens på sig
+  let dagens = container.querySelector(".dagens");
+  if (dagens != null) dagens.classList.toggle("dagens");
+
+
+  //Få en referens till den som skall markeras som dagens lunch
+  const pickedCard = container.querySelector(`[data-id="${id}"]`);
+  if (pickedCard != null )pickedCard.classList.add("dagens");
+
+
 }
