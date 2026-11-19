@@ -13,6 +13,28 @@ import type { Ratt } from "./typer";
 //    </article>
 export function skapaRattKort(ratt: Ratt): HTMLElement {
   // TODO
+  //Create each element part for part, and also add the attributes
+  //Mental Note - Loke how the interface Ratt look like, wrapping with if may be needed
+  const card: HTMLElement = document.createElement("article");
+  card.dataset.id = `${ratt.id}`;
+
+  const imageCard = document.createElement("img");
+  if (ratt.bild) imageCard.src = ratt.bild;
+  if (ratt.beskrivning) imageCard.alt = ratt.beskrivning;
+  
+  const titleCard = document.createElement("h3");
+  titleCard.textContent = ratt.namn;
+
+  const descriptionCard = document.createElement("p");
+  if (ratt.beskrivning)  descriptionCard.textContent = ratt.beskrivning;
+
+  const priceCard = document.createElement("p");
+  priceCard.classList.add("pris");
+  priceCard.textContent = `${ratt.pris} kr`;
+
+  card.append(imageCard, titleCard, descriptionCard, priceCard);
+
+  return card;
 }
 
 // 2. Töm containern och lägg in ett kort per rätt.
