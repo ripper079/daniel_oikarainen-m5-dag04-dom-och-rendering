@@ -36,21 +36,17 @@ heroSection.classList.remove("dagens"); //Notera att attributet class finns kvar
 //En kör som HTML, så kod körs
 //den andra visat den enbart som text
 
-// TODO
-
-
 // DEL 2: koppla ihop med funktionerna i ui.js ----------------------------
 // 7. Hämta #meny-lista och #meny-rubrik.
 const menuListTitle = document.querySelector<HTMLElement>("#meny-rubrik")!;
 const menuList = document.querySelector<HTMLElement>("#meny-lista")!;
+
+// 8. Anropa visaMeny med menyn, och uppdateraRubrik med antalet rätter.
 visaMeny(menuList, meny);
 uppdateraRubrik(menuListTitle, meny.length);
 
-//const idBilligasteRatt = 1;
-const idBilligasteRatt = billigast(meny)?.id;
-markeraDagensRatt(menuList, idBilligasteRatt);
-
-// 8. Anropa visaMeny med menyn, och uppdateraRubrik med antalet rätter.
 // 9. Dagens rätt = den billigaste lunchen. Använd filter och billigast (från meny.js)
 //    och markeraDagensRatt.
-// TODO
+const idBilligasteRatt = billigast(meny)?.id;
+if (idBilligasteRatt != undefined)
+    markeraDagensRatt(menuList, idBilligasteRatt);
